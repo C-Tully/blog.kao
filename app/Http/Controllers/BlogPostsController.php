@@ -34,6 +34,11 @@ class BlogPostsController extends Controller
 
 	}
 
+	public function show(BlogPosts $post){    	
+
+    	return view('posts.show',compact('post'));
+    }
+
 
 	/*
 	*	function: 	getNextPage

@@ -27,12 +27,18 @@ use App\BlogPosts;
 
 	//Make all the required using an artisan command
 	// php artisan make:model <name> -mc(migration and controller)
+
+	Route::get('/posts/create','PostsController@create');
+	Route::post('/posts', 'PostsController@store');
+
+	Route::post('/posts/{post}/comments', 'CommentsController@store');
+
 	Route::get('/','BlogPostsController@index');
-	Route::get('/Post/{next_post_date}','BlogPostsController@getSingleBlogPost');
+	//Route::get('/posts/{next_post_date}','BlogPostsController@getSingleBlogPost');
+
 
 // Route::get('/','PostsController@index');
-
-// Route::get('/posts/{post}','PostsController@show');
+	Route::get('/posts/{post}','BlogPostsController@show');
 
 
 

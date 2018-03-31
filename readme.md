@@ -18,15 +18,47 @@ Theory:: Route Model Binding
 Theory::Query Scopes.
 	- shortening a query call to a specific method call, and there by allowing it to be called as a standard call such as a get(); call.
 
+Logic:: Form Submitting
+	- Laracasts incorporates a hidden (mandatory) field that has a session token that is required to process form submisison data. Make sure to call the standard {{ csrf_field() }} in the blade in question.
+Logic:: Bulk Saving Form Data
+	- If bulk saving form data be sure to add a protected fillable = ['<acceptable fields>'] to the model. This allows acceptance for those variables only.
+	- If bulk saving and you want to exclude fields you can do a protected guarded = ['<blocked fields>']
+	ShortCut: By creating a parent class you can set these properities as a inherited feature for all children classes.  Create a new Model -> App/Model.php
+Logic: $errors
+	- The $errors is a global object that is available to all views.
 
+
+*****************************************************************
+*****   Useful Code Snippets 					  ***************
+*****************************************************************
+{{ csrf_field() }}
+Creates the mandatory token for form submissions. Server will reject form submissions without a correct token.
+
+
+{{ method_field(:'PATH') }}
+ Used in form deployment. Due to old technology form methods such as PATCH or DELETE 
+
+
+
+*****************************************************************
+*****   Useful commands for the terminal/cmd line ***************
+*****************************************************************
+
+(With Node and Node Installed )
+
+ npm run <name>
+
+ npm run dev
+ 	Set environment to dev (compiles down files set in the webpab.mix file and sets them to a specific area.)
+
+npm run watch
+	Watches for changes in the app.css/.js files and recomiles.
 
 php artisan migrate
 	- Runs all the migrations files in the /migrations folder.
 NOTE:: Made a change to the migrate schema? Make sure to run refresh
 php artisan migrate:refresh
 	- Refreshs the migration tables
-
-
 
 php artisan make:model <name> 
 
@@ -37,6 +69,9 @@ php artisan make:model <name>
 
  - Short cut: Creating a Migration and creating the elequoent model and controller the same time
 	-E.G php artisan make:model <name> -mc(migration and controller)
+
+ - Short cut: Creationg a Form Controller. This creates a full controller with a template for standard CRUD implementantions
+ 	E.G php artisan make:controller <name> -r
 
 - Dump composer Cache
 	- E.G composer dump-autoload
